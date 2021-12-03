@@ -7,9 +7,11 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const index_1 = __importDefault(require("./config/db/index"));
+const domain_rt_1 = __importDefault(require("./router/domain-rt"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(body_parser_1.default.json());
+app.use(domain_rt_1.default);
 // handle errors
 app.use((error, req, res, next) => {
     console.log(error.message);

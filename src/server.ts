@@ -2,12 +2,14 @@ import ENV from "dotenv";
 import express, { application } from "express";
 import bodyParser from "body-parser";
 import connectDatabse from "./config/db/index";
+import domainRouter from "./router/domain-rt";
 
 ENV.config();
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(domainRouter);
 
 // handle errors
 app.use(
