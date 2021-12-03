@@ -18,7 +18,7 @@ const getDomainLisDB = (): Promise<any> => {
   return Domain.find({}).exec();
 };
 
-const getDomainLisByOwnerDB = (ownerID: number) : Promise<any> => {
+const getDomainLisByOwnerDB = (ownerID: number): Promise<any> => {
   return Domain.find({ ownerID: ownerID }).exec();
 };
 
@@ -30,6 +30,13 @@ const updateDomainDB = (
   Domain.findByIdAndUpdate(domainID, updatedDomain, (err: any, doc: any) => {
     cb(doc, err);
   });
+};
+
+const searchDomainDB = (keyword: any, cb: Function) => {
+  return Domain.find({ domainName: keyword })
+    .exec(function (err: any, docs: any) {
+      cb(err, docs);
+    });
 };
 
 const deleteDomainDB = (domainID: string) => {
@@ -44,4 +51,5 @@ export {
   deleteDomainDB,
   getDomainLisDB,
   getDomainLisByOwnerDB,
+  searchDomainDB,
 };
