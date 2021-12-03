@@ -18,8 +18,8 @@ const getDomainLisDB = (): Promise<any> => {
   return Domain.find({}).exec();
 };
 
-const getDomainLisByOwnerDB = (ownerID: number) => {
-  return Domain.find({ ownerID: ownerID });
+const getDomainLisByOwnerDB = (ownerID: number) : Promise<any> => {
+  return Domain.find({ ownerID: ownerID }).exec();
 };
 
 const updateDomainDB = (

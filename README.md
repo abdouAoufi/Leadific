@@ -54,3 +54,13 @@ body
   "ownerID": 32424
 }
 ````
+
+___
+
+- Get domain by owner ID
+
+http method : **GET**
+
+>http://localhost:4000/domain/byOwner/32424
+
+___

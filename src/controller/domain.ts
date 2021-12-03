@@ -3,6 +3,7 @@ import {
   createDomainDB,
   getDomainLisDB,
   updateDomainDB,
+  getDomainLisByOwnerDB,
 } from "../service/domain";
 import DomainInt from "../interfaces/domain";
 
@@ -44,4 +45,20 @@ const updateDomain = (req: Request, res: Response, next: Function) => {
   }
 };
 
-export { createDomain, getDomainList, updateDomain };
+const getDomainByID = (req: Request, res: Response, next: Function) => {
+  const ownerID: string = req.params.ownerId!;
+  if (ownerID) {
+    getDomainLisByOwnerDB(+ownerID).then((domains) => {
+      if (!domains) {
+        return res
+          .status(404)
+          .json({ message: "Looks we haven't any domain yet for this user" });
+      }
+      res.status(200).json({ domains });
+    });
+  } else {
+    res.status(500).json({ message: "No domain id provided or invalid one!" });
+  }
+};
+
+export { createDomain, getDomainList, updateDomain, getDomainByID };
