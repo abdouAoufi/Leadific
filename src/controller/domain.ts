@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createDomainDB } from "../service/domain";
+import { createDomainDB, getDomainLisDB } from "../service/domain";
 import DomainInt from "../interfaces/domain";
 
 const createDomain = (req: Request, res: Response, next: Function) => {
@@ -12,4 +12,15 @@ const createDomain = (req: Request, res: Response, next: Function) => {
   });
 };
 
-export { createDomain };
+const getDomainList = (req: Request, res: Response, next: Function) => {
+  getDomainLisDB().then((domains) => {
+    if (!domains) {
+      return res
+        .status(404)
+        .json({ message: "Looks we haven't any domain yet" });
+    }
+    res.status(200).json({ domains });
+  });
+};
+
+export { createDomain, getDomainList };

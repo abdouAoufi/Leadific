@@ -14,8 +14,8 @@ const checkExistenceByIdDB = (productID: string) => {
   return Domain.findById(productID);
 };
 
-const getDomainLisDB = () => {
-  return Domain.find({});
+const getDomainLisDB = (): Promise<any> => {
+  return Domain.find({}).exec();
 };
 
 const getDomainLisByOwnerDB = (ownerID: number) => {
