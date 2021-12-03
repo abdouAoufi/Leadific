@@ -14,7 +14,9 @@ Create MERN app to operate on theses domains.
 
 ## Routes
 
-- Create Domain.
+- ### Create Domain.
+
+http method : POST
 
 > http://localhost:4000/domain
 
@@ -27,3 +29,28 @@ body:
   "ownerID": 32424
 }
 ```
+___
+
+
+- Get list of domains
+
+http method : **GET**
+
+> http://localhost:4000/domain
+
+___
+- Updted domain
+
+http method : **PUT**
+
+> http://localhost:4000/domain/domainID
+
+body 
+
+````
+{
+  "domainName": "www.updatedDomain.com",
+  "ownerName": "updated user",
+  "ownerID": 32424
+}
+````

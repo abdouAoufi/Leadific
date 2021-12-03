@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { createDomainDB, getDomainLisDB } from "../service/domain";
+import {
+  createDomainDB,
+  getDomainLisDB,
+  updateDomainDB,
+} from "../service/domain";
 import DomainInt from "../interfaces/domain";
 
 const createDomain = (req: Request, res: Response, next: Function) => {
@@ -23,4 +27,21 @@ const getDomainList = (req: Request, res: Response, next: Function) => {
   });
 };
 
-export { createDomain, getDomainList };
+const updateDomain = (req: Request, res: Response, next: Function) => {
+  const domainID: string = req.params.domainId!;
+  const domainInfo: DomainInt = req.body;
+  if (domainID) {
+    updateDomainDB(domainID, domainInfo, (domain: any, err: any) => {
+      if (!domain) {
+        return res
+          .status(422)
+          .json({ message: "Something wont wront failed to updated domain" });
+      }
+      return res.status(201).json({ message: "Domain updated successfuly" });
+    });
+  } else {
+    res.status(500).json({ message: "No domain id provided or invalid one!" });
+  }
+};
+
+export { createDomain, getDomainList, updateDomain };
