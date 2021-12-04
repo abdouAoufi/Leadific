@@ -10,11 +10,21 @@ import DomainInt from "../interfaces/domain";
 
 const createDomain = (req: Request, res: Response) => {
   const DomainInfo: DomainInt = req.body;
-  createDomainDB(DomainInfo).then((domain) => {
-    if (!domain) {
-      return res.status(422).json({ message: "Error creating domain" });
+  const domainName = DomainInfo.domainName;
+
+  searchDomainDB(domainName, (err: any, domain: any) => {
+    if (domain) {
+      console.log(domain);
+      return res.status(500).json({
+        message: "Sorry this domain already exist please choose another one",
+      });
     }
-    res.status(201).json({ message: "Domain created seccessfuly" });
+    createDomainDB(DomainInfo).then((domain) => {
+      if (!domain) {
+        return res.status(422).json({ message: "Error creating domain" });
+      }
+      res.status(201).json({ message: "Domain created seccessfuly" });
+    });
   });
 };
 
@@ -64,7 +74,7 @@ const getDomainByID = (req: Request, res: Response) => {
 
 const searchDomain = (req: Request, res: Response) => {
   const keyword = req.query?.q;
-  console.log(typeof keyword)
+  console.log(typeof keyword);
   searchDomainDB(keyword, (err: any, domain: any) => {
     if (!domain) {
       return res.status(404).json({

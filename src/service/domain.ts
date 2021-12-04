@@ -33,7 +33,7 @@ const updateDomainDB = (
 };
 
 const searchDomainDB = (keyword: any, cb: Function) => {
-  return Domain.find({ domainName: keyword })
+  return Domain.findOne({ domainName: keyword })
     .exec(function (err: any, docs: any) {
       cb(err, docs);
     });
