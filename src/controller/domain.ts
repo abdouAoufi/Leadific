@@ -65,7 +65,7 @@ const getDomainByID = (req: Request, res: Response) => {
 const searchDomain = (req: Request, res: Response) => {
   const keyword = req.query?.q;
   console.log(typeof keyword)
-  searchDomainDB(keyword, (domain: any, err: any) => {
+  searchDomainDB(keyword, (err: any, domain: any) => {
     if (!domain) {
       return res.status(404).json({
         message: "Sorry this domain wasn't found do you think createa one?",

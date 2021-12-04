@@ -64,3 +64,8 @@ http method : **GET**
 >http://localhost:4000/domain/byOwner/32424
 
 ___
+- Search domains
+  
+http method : **GET**
+
+>http://localhost:4000/domain/search?q=www.abdou.com
