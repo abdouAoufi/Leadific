@@ -23,7 +23,7 @@ This is called strict equality. Means no casting here no conversion to the type 
  What is the purpose of the ‘async’ and ‘await’ keywords in javascript?
 
 
- Async and Await for me it's just aonther way to write asynnchrounous code. In early days we had only callbacks then javascript intreduce the Promises things get intressted here we can write code like that.
+ Async and Await for me it's just aonther way to write asynnchrounos code. In early days we had only callbacks then javascript intreduce the Promises things get intressted here we can write code like that.
 
  ````
  function getData () {
@@ -36,7 +36,7 @@ This is called strict equality. Means no casting here no conversion to the type 
  }
 ````
 
-Here we can just store the data variable returned by the function and get rid of then() and catch with the helpe of 
+Here we can just store the data variable returned by the **promise** and get rid of then() and catch with the helpe of 
 Async and await.
 
  ````
@@ -83,6 +83,6 @@ return x + await p_a + await p_b;
   const result = x + y + z ;
   ````
   It start constructing the reslut from left to right in this case x then y and lastetly z.
-  This is what happend in second example and we had async operations.
+  This is what happend in second example but we had async operations.
 
     
