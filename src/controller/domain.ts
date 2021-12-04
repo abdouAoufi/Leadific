@@ -7,8 +7,9 @@ import {
   getDomainLisByOwnerDB,
 } from "../service/domain";
 import DomainInt from "../interfaces/domain";
+import { wrap } from "async-middleware";
 
-const createDomain = (req: Request, res: Response) => {
+const createDomain = wrap((req: Request, res: Response) => {
   const DomainInfo: DomainInt = req.body;
   const domainName = DomainInfo.domainName;
 
@@ -26,9 +27,9 @@ const createDomain = (req: Request, res: Response) => {
       res.status(201).json({ message: "Domain created seccessfuly" });
     });
   });
-};
+});
 
-const getDomainList = (req: Request, res: Response) => {
+const getDomainList = wrap((req: Request, res: Response) => {
   getDomainLisDB().then((domains) => {
     if (!domains) {
       return res
@@ -37,9 +38,9 @@ const getDomainList = (req: Request, res: Response) => {
     }
     res.status(200).json({ domains });
   });
-};
+});
 
-const updateDomain = (req: Request, res: Response) => {
+const updateDomain = wrap((req: Request, res: Response) => {
   const domainID: string = req.params.domainId!;
   const domainInfo: DomainInt = req.body;
   if (domainID) {
@@ -54,9 +55,9 @@ const updateDomain = (req: Request, res: Response) => {
   } else {
     res.status(500).json({ message: "No domain id provided or invalid one!" });
   }
-};
+});
 
-const getDomainByID = (req: Request, res: Response) => {
+const getDomainByID = wrap((req: Request, res: Response) => {
   const ownerID: string = req.params.ownerId!;
   if (ownerID) {
     getDomainLisByOwnerDB(+ownerID).then((domains) => {
@@ -70,9 +71,9 @@ const getDomainByID = (req: Request, res: Response) => {
   } else {
     res.status(500).json({ message: "No domain id provided or invalid one!" });
   }
-};
+});
 
-const searchDomain = (req: Request, res: Response) => {
+const searchDomain = wrap((req: Request, res: Response) => {
   const keyword = req.query?.q;
   console.log(typeof keyword);
   searchDomainDB(keyword, (err: any, domain: any) => {
@@ -83,7 +84,7 @@ const searchDomain = (req: Request, res: Response) => {
     }
     res.status(201).json({ domain });
   });
-};
+});
 
 export {
   createDomain,

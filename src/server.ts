@@ -11,6 +11,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(domainRouter);
 
+app.use("*", (req: express.Request, res: express.Response, next: any) => {
+  res.status(404).json({ message: "You shouldn't be here" });
+});
+
+
 // handle errors
 app.use(
   (error: any, req: express.Request, res: express.Response, next: Function) => {
