@@ -12,6 +12,21 @@ Our application is dealing with **domains**.
 
 Create MERN app to operate on theses domains.
 
+
+## How to run the app?
+
+Simply clone this repository. then hit 
+````
+npm install
+````
+if everything's right launch the App by:
+
+````
+npm run dev
+````
+nb: MongoDB should be installed on your local machine to start the app. If not you can use cloud url:
+open .env file and set the cloud url.
+>check config/db/index.ts 
 ## Routes
 
 - ### Create Domain.
